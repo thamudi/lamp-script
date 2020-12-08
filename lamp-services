@@ -1,0 +1,71 @@
+#!/usr/bin/bash
+
+
+echo 'This script is responsible for Starting, Restarting Stopping and check the status of the LAMP services ';
+
+echo 'For the best expreince run this in sudo mode.'
+
+loop=1
+
+while [ $loop = 1 ]
+do
+    echo 'Enter start, stop, restart or status: '
+    read input # Read user input
+
+    case $input in
+        start)
+            echo 'Starting LAMP services:'
+
+            echo 'Starting Apache:'
+            systemctl start httpd
+            echo 'Apache Running'
+            
+            echo 'Starting Maria DB:'
+            systemctl start mariadb
+            echo 'Maria DB Running'
+            echo 'Done!'
+            loop=0
+            ;;
+        
+        stop)
+            echo 'Stopping LAMP services:'
+
+            echo 'Stopping Apache:'
+            systemctl stop httpd
+            echo 'Apache Stopped'
+            
+            echo 'Stopping Maria DB:'
+            systemctl stop mariadb
+            echo 'Maria DB Stopped'
+            echo 'Done!'
+            loop=0
+            ;;
+
+        restart)
+            echo 'Restarting LAMP services:'
+
+            echo 'Restarting Apache:'
+            systemctl restart httpd
+            echo 'Apache Restarted'
+            
+            echo 'Restarting Maria DB:'
+            systemctl restart mariadb
+            echo 'Maria DB Restarted'
+            echo 'Done!'
+            loop=0
+            ;;
+
+        status)
+            echo 'LAMP services status:'
+
+            echo 'Apache status:'
+            systemctl status httpd
+            
+            echo 'Maria DB status:'
+            systemctl status mariadb
+            echo 'Done!'
+            loop=0
+            ;;
+    esac
+done
+echo 'Bye'
